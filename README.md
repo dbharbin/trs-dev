@@ -21,7 +21,11 @@ Docker version 20.10.19, build d85ef84;
 user.name=Don Harbin
 user.email=don.harbin@linaro.org
 ```
-* 
+* Build docker image 
+```
+/home/dev/trs-dev$ docker build -t test-image .
+```
+* Run a new Docker container
 
 
 # Build TRS 
