@@ -23,7 +23,7 @@ user.email=don.harbin@linaro.org
 ```
 * Build docker image 
 ```
-/home/dev/trs-dev$ docker build -t test-image .
+**/home/dev/trs-dev$** docker build -t test-image .
 ```
 * Run a new Docker container to ssh into container (both root and dev in example)
 ```
@@ -42,7 +42,8 @@ $ exit
 logout
 Connection to 172.17.0.2 closed.
 ```
-* Enter  ongzindf in a /bin/bash shell for user dev
+* Enter a running container thru a /bin/bash shell for user dev
+This is the preferred method for container entry and development
 
 ```
 /home/dev/trs-dev$ docker exec -it --user dev test-container /bin/bash
@@ -50,8 +51,19 @@ dev@eead8270d872:/$ exit
 exit
 /home/dev/trs-dev$ 
 ```
-
-
+To stop, start and remove the container, use the following commands
+```
+/home/dev/trs-dev$ docker stop test-container
+/home/dev/trs-dev$ docker 
+/home/dev/trs-dev$ docker docker start test-container
+/home/dev/trs-dev$ docker 
+/home/dev/trs-dev$ docker rm test-container
+test-container
+/home/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 testimage
+b7e14cb4c5118d7b3086b0b9cae2c63052823e890d0e7156aed85cc094682d75
+/home/dev/trs-dev$ docker exec -it --user dev test-container /bin/bash
+dev@b7e14cb4c511:/$
+```
 
 # Build TRS 
 
