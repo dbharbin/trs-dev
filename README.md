@@ -25,7 +25,32 @@ user.email=don.harbin@linaro.org
 ```
 /home/dev/trs-dev$ docker build -t test-image .
 ```
-* Run a new Docker container
+* Run a new Docker container to ssh into container (both root and dev in example)
+```
+/home/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 testimage
+eead8270d872f3b4c6cc1a2981e0345e9dfaf379d4bac3fce9393998a15944bb
+/home/dev/trs-dev$ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' test-container
+t-container
+172.17.0.2
+/home/dev/trs-dev$ ssh root@172.17.0.2
+root@eead8270d872:~# exit
+logout
+Connection to 172.17.0.2 closed.
+
+/home/dev/trs-dev$ ssh dev@172.17.0.2
+$ exit
+logout
+Connection to 172.17.0.2 closed.
+```
+* Enter  ongzindf in a /bin/bash shell for user dev
+
+```
+/home/dev/trs-dev$ docker exec -it --user dev test-container /bin/bash
+dev@eead8270d872:/$ exit
+exit
+/home/dev/trs-dev$ 
+```
+
 
 
 # Build TRS 
