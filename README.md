@@ -7,24 +7,24 @@ This repo provides a baseline to quickly and consistantly set up a TRS developme
 
 * Assure Docker is installed on your local development machine. If not, install it. 
 ```
-/home/dev$: docker --version;
+/home/don/dev$: docker --version;
 Docker version 20.10.19, build d85ef84;
 ```
 
 * Clone this repo to a local directory </home/dev/trs-dev used as example directory in these instrustions>
   * Set up git config
 ```
-/home/dev/trs-dev$ git config --list
-/home/dev/trs-dev$ git config --global user.name "Dev Name"
-/home/dev/trs-dev$ git config --global user.email "dev.name@mail.com"
-/home/dev/trs-dev$ git config --list
+/home/don/dev/trs-dev$ git config --list
+/home/don/dev/trs-dev$ git config --global user.name "Dev Name"
+/home/don/dev/trs-dev$ git config --global user.email "dev.name@mail.com"
+/home/don/dev/trs-dev$ git config --list
 user.name=Don Harbin
 user.email=don.harbin@linaro.org
-/home/dev/trs-dev$ git clone 
+/home/don/dev/trs-dev$ git clone https://github.com/dbharbin/trs-dev.git
 ```
 * Build docker image 
 ```
-/home/dev/trs-dev$ docker build -t test-image .
+/home/don/dev/trs-dev$ docker build -t test-image .
 ```
 * Run a new Docker container to ssh into container (both root and dev in example)
 ```
@@ -34,23 +34,23 @@ eead8270d872f3b4c6cc1a2981e0345e9dfaf379d4bac3fce9393998a15944bb
 t-container
 172.17.0.2
 /home/dev/trs-dev$ ssh root@172.17.0.2
-root@eead8270d872:~# exit
+root@eead8270d872:~# exit                 // Container login prompt
 logout
 Connection to 172.17.0.2 closed.
 
-/home/dev/trs-dev$ ssh dev@172.17.0.2
+/home/don/dev/trs-dev$ ssh dev@172.17.0.2
 $ exit
 logout
 Connection to 172.17.0.2 closed.
 ```
+
 * Enter a running container thru a /bin/bash shell for user dev
 This is the preferred method for container entry and development
-
 ```
-/home/dev/trs-dev$ docker exec -it --user dev test-container /bin/bash
-dev@eead8270d872:/$ exit
+/home/don/dev/trs-dev$ docker exec -it --user /home/dev/trs-workspace test-container /bin/bash
+dev@eead8270d872:/$ exit                // Container login prompt
 exit
-/home/dev/trs-dev$ 
+/home/dev/trs-dev$                     // back to host   
 ```
 To stop, start and remove the container, use the following commands
 ```
