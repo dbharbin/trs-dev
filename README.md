@@ -7,60 +7,63 @@ This repo provides a baseline to quickly and consistantly set up a TRS developme
 
 * Assure Docker is installed on your local development machine. If not, install it. 
 ```
-/home/don/dev$: docker --version;
+~/dev$: docker --version;
 Docker version 20.10.19, build d85ef84;
 ```
 
 * Clone this repo to a local directory </home/dev/trs-dev used as example directory in these instrustions>
   * Set up git config
 ```
-/home/don/dev/trs-dev$ git config --list
-/home/don/dev/trs-dev$ git config --global user.name "Dev Name"
-/home/don/dev/trs-dev$ git config --global user.email "dev.name@mail.com"
-/home/don/dev/trs-dev$ git config --list
+~/dev/trs-dev$ git config --list
+~/dev/trs-dev$ git config --global user.name "Dev Name"
+~/dev/trs-dev$ git config --global user.email "dev.name@mail.com"
+~/dev/trs-dev$ git config --list
 user.name=Don Harbin
 user.email=don.harbin@linaro.org
-/home/don/dev/trs-dev$ git clone https://github.com/dbharbin/trs-dev.git
+~/dev/trs-dev$ git clone https://github.com/dbharbin/trs-dev.git
 ```
 * Build docker image 
 ```
-/home/don/dev/trs-dev$ docker build -t test-image .
+~/dev/trs-dev$ docker build -t test-image .
 ```
 * Run a new Docker container to ssh into container (both root and dev in example)
 ```
-/home/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 testimage
+~/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 test-image
 eead8270d872f3b4c6cc1a2981e0345e9dfaf379d4bac3fce9393998a15944bb
-/home/dev/trs-dev$ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' test-container
-t-container
+~/dev/trs-dev$ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' test-container
+test-container
 172.17.0.2
-/home/dev/trs-dev$ ssh root@172.17.0.2
+~/dev/trs-dev$ ssh root@172.17.0.2
+
 root@eead8270d872:~# exit                 // Container login prompt
 logout
 Connection to 172.17.0.2 closed.
 
-/home/don/dev/trs-dev$ ssh dev@172.17.0.2
+~/dev/trs-dev$ ssh dev@172.17.0.2
 $ exit
 logout
 Connection to 172.17.0.2 closed.
+
+~/dev/trs-dev$
 ```
 
 * Enter a running container thru a /bin/bash shell for user dev
 This is the preferred method for container entry and development
 ```
-/home/don/dev/trs-dev$ docker exec -it --user /home/dev/trs-workspace test-container /bin/bash
+~/dev/trs-dev$ docker exec -it --user /home/dev/trs-workspace test-container /bin/bash
 dev@eead8270d872:/$ exit                // Container login prompt
 exit
-/home/dev/trs-dev$                     // back to host   
+~/dev/trs-dev$                     // back to host   
 ```
 To stop, start and remove the container, use the following commands
 ```
-/home/dev/trs-dev$ docker stop test-container
-/home/dev/trs-dev$ docker 
-/home/dev/trs-dev$ docker docker start test-container
-/home/dev/trs-dev$ docker 
-/home/dev/trs-dev$ docker rm test-container
+~/dev/trs-dev$ docker stop test-container
+~/dev/trs-dev$ docker 
+~/dev/trs-dev$ docker docker start test-container
+~/dev/trs-dev$ docker 
+~/dev/trs-dev$ docker rm test-container
 test-container
-/home/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 testimage
+~/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 test-image
 b7e14cb4c5118d7b3086b0b9cae2c63052823e890d0e7156aed85cc094682d75
 /home/dev/trs-dev$ docker exec -it --user dev test-container /bin/bash
 dev@b7e14cb4c511:/$
