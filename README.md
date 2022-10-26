@@ -20,6 +20,7 @@ Docker version 20.10.19, build d85ef84;
 /home/dev/trs-dev$ git config --list
 user.name=Don Harbin
 user.email=don.harbin@linaro.org
+/home/dev/trs-dev$ git clone 
 ```
 * Build docker image 
 ```
