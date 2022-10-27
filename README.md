@@ -51,9 +51,9 @@ Connection to 172.17.0.2 closed.
 This is the preferred method for container entry and development
 ```
 ~/dev/trs-dev$ docker exec -it --user /home/dev/trs-workspace test-container /bin/bash
-dev@eead8270d872:/$ exit                // Container login prompt
+dev@eead8270d872:/$ exit                  // Container login prompt
 exit
-~/dev/trs-dev$                     // back to host   
+~/dev/trs-dev$                            // back to host   
 ```
 To stop, start and remove the container, use the following commands
 ```
@@ -70,6 +70,18 @@ dev@b7e14cb4c511:/$
 ```
 
 # Build TRS 
+
+Copy the install script into the working directory created by the Dockerfile
+```
+docker cp trs-install test-container:/home/dev/trs-workspace
+docker exec -it --user dev -w /home/dev/trs-workspace test-container /bin/bash
+dev@aea3bf0028af:~/trs-workspace$ ls       // working directory prompt in the container
+trs-install 
+dev@aea3bf0028af:~/trs-workspace$./trs-install <email@mail.com> "<name>"
+
+repo sync has finished successfully.
+dev@d43711fed37f:~/trs-workspace$ 
+```
 
 
 
