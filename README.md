@@ -69,12 +69,12 @@ b7e14cb4c5118d7b3086b0b9cae2c63052823e890d0e7156aed85cc094682d75
 dev@b7e14cb4c511:/$
 ```
 
-# Build TRS 
+# Install and Build TRS in the Docker Container 
 
-Copy the install script into the working directory created by the Dockerfile
+Copy the TRS install script into the working directory created by the Dockerfile and run it
 ```
-docker cp trs-install test-container:/home/dev/trs-workspace
-docker exec -it --user dev -w /home/dev/trs-workspace test-container /bin/bash
+~/dev/trs-dev$ docker cp trs-install test-container:/home/dev/trs-workspace
+~/dev/trs-dev$ docker exec -it --user dev -w /home/dev/trs-workspace test-container /bin/bash
 dev@aea3bf0028af:~/trs-workspace$ ls       // working directory prompt in the container
 trs-install 
 dev@aea3bf0028af:~/trs-workspace$./trs-install <email@mail.com> "<name>"
@@ -83,5 +83,9 @@ repo sync has finished successfully.
 dev@d43711fed37f:~/trs-workspace$ 
 ```
 
+## Install Toolchain
+
+
+## Build TRS
 
 
