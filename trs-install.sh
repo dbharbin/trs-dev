@@ -19,5 +19,7 @@ sudo repo sync -j3
 echo "#################"
 echo "# BUILD PRE-REQS"
 echo "#################"
-sudo make apt-prereqs
+make apt-prereqs
+make python-prereqs
 
+source /home/dev/trs-workspace/.pyvenv/bin/activate
