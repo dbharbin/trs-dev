@@ -28,7 +28,7 @@ user.email=don.harbin@linaro.org
 ```
 * Run a new Docker container to ssh into container (both root and dev in example)
 ```
-~/dev/trs-dev$ docker run -dit --name test-container -p 8080:22 test-image
+~/dev/trs-dev$ docker run -dit --name test-container --dns 8.8.8.8 -p 8080:22 test-image
 eead8270d872f3b4c6cc1a2981e0345e9dfaf379d4bac3fce9393998a15944bb
 ~/dev/trs-dev$ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' test-container
 test-container
@@ -63,7 +63,7 @@ To stop, start and remove the container, use the following commands
 ~/dev/trs-dev$ docker 
 ~/dev/trs-dev$ docker rm test-container
 test-container
-~/dev/trs-dev$ docker run -dit --name test-container -p 8888:22 test-image
+~/dev/trs-dev$ docker run -dit --name test-container -dns 8.8.8.8 -p 8080:22 test-image
 b7e14cb4c5118d7b3086b0b9cae2c63052823e890d0e7156aed85cc094682d75
 /home/dev/trs-dev$ docker exec -it --user dev test-container /bin/bash
 dev@b7e14cb4c511:/$
