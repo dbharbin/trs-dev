@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script sets up git config so taht can install TRS package.  It then installs the trs package
+# Run this script from the Docker container to set up git config and install TRS packages. 
 #
 # Two Parameters required, first is email, second is Username(in quotes if includes space(s))
 # example: ./trs-install don.harbin@linaro.org "Don Harbin"
