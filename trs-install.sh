@@ -16,3 +16,8 @@ git config --list
 sudo repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git
 sudo repo sync -j3
 
+echo "#################"
+echo "# BUILD PRE-REQS"
+echo "#################"
+sudo make apt-prereqs
+
