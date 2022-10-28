@@ -24,6 +24,7 @@ RUN apt-get update
 RUN apt-get install -y vim \
     iputils-ping \
     net-tools \
+    build-essential \
     repo
 
 RUN repo version
