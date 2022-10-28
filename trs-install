@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script sets up git config so taht can install TRS package.  It then installs the trs package
+#
 # Two Parameters required, first is email, second is Username(in quotes if includes space(s))
 # example: ./trs-install don.harbin@linaro.org "Don Harbin"
 
