@@ -50,7 +50,7 @@ Connection to 172.17.0.2 closed.
 * Enter a running container thru a /bin/bash shell for user dev
 This is the preferred method for container entry and development
 ```
-~/dev/trs-dev$ docker exec -it --user /home/dev/trs-workspace test-container /bin/bash
+~/dev/trs-dev$ docker exec -it --user dev -w /home/dev/trs-workspace test-container /bin/bash
 dev@eead8270d872:/$ exit                  // Container login prompt
 exit
 ~/dev/trs-dev$                            // back to host   
