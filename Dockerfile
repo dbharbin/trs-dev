@@ -25,6 +25,7 @@ RUN apt-get install -y vim \
     iputils-ping \
     net-tools \
     build-essential \
+    python3-pip \
     repo
 
 RUN repo version
