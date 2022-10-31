@@ -33,10 +33,10 @@ RUN repo version
 # Get the TRS latest source code
 #####
 RUN mkdir /home/dev/trs-workspace
-#RUN cd trs-workspace
-#RUN repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git
-#RUN repo sync -j3
-
+RUN cd trs-workspace
+RUN repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git
+RUN repo sync -j3
+RUN export PATH=$PATH:/home/dev/.local/bin
 
 # Update password for ssh access and start up ssh
 #####
