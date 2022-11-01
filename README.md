@@ -75,7 +75,7 @@ Copy the TRS install script into the working directory created by the Dockerfile
 This assumes that the "test-container" is up and running
 
 ```
-~/dev/trs-dev$ docker cp trs-install test-container:/home/dev/trs-workspace
+~/dev/trs-dev$ docker cp trs-install.sh test-container:/home/dev/trs-workspace
 ~/dev/trs-dev$ docker exec -it --user dev -w /home/dev/trs-workspace test-container /bin/bash
 dev@aea3bf0028af:~/trs-workspace$ ls       // working directory prompt in the container
 trs-install 
