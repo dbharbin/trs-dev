@@ -15,5 +15,4 @@ then
 fi
   
 docker run -dit --name test-container --dns 8.8.8.8 -p 8080:22 test-image
-docker cp trs-install test-container:/home/dev/trs-workspace
 docker exec -it --user dev -w /home/dev/trs-workspace test-container /bin/bash
