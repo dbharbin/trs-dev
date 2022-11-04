@@ -3,6 +3,10 @@ MAINTAINER Don Harbin (don.harbin@linaro.org)
 
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV TZ=Europe/Stockholm
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ################################################################################
 # APT packages
 ################################################################################
@@ -10,75 +14,16 @@ RUN apt update
 
 RUN apt -y --allow-downgrades --allow-remove-essential --allow-change-held-packages install apt-utils
 
-# https://trs.readthedocs.io/en/latest/install/install.html#installing-prerequisites
-# However, to avoid making changes here, it's better to add 'sudo' support and
-# then once running the docker image instead call 'make apt-prereqs'
-RUN apt -y --allow-downgrades --allow-remove-essential --allow-change-held-packages install \
-	    acpica-tools \
-	    adb \
-	    autoconf \
-	    automake \
-	    bc \
-	    bison \
-	    build-essential \
-	    ccache \
-	    chrpath \
-	    cpio \
-	    cscope \
-	    curl \
-	    device-tree-compiler \
-	    diffstat \
-	    expect \
-	    fastboot \
-	    file \
-	    flex \
-	    ftp-upload \
-	    gawk \
-	    gdisk \
-	    libattr1-dev \
-	    libcap-dev \
-	    libfdt-dev \
-	    libftdi-dev \
-	    libglib2.0-dev \
-	    libgmp3-dev \
-	    libhidapi-dev \
-	    libmpc-dev \
-	    libncurses5-dev \
-	    libpixman-1-dev \
-	    libssl-dev \
-	    libtool \
-	    lz4 \
-	    make \
-	    make \
-	    mtools \
-	    netcat \
-	    ninja-build \
-	    pip \
-	    python3-cryptography \
-	    python3-pip \
-	    python3-pyelftools \
-	    python3-serial \
-	    python3-venv \
-	    python-is-python3 \
-	    qemu-system-aarch64 \
-	    rsync \
-	    sudo \
-	    unzip \
-	    uuid-dev \
-	    wget \
-	    xdg-utils \
-	    xdg-utils \
-	    xterm \
-	    xz-utils \
-	    zlib1g-dev \
-	    zstd
-
-# Add a few extra packages for Docker only, arguable they should be part of the
-# complete TRS instructions
+# Minimum ammount of packages needed to be able to kick of a TRS build. I.e.,
+# even though TRS has it's own apt-prereqs target, we have to preinstall a few.
+# I.e, for example, we cannot call make before installing make.
 RUN apt -y --allow-downgrades --allow-remove-essential --allow-change-held-packages install \
 	    curl \
 	    cpio \
 	    git \
+	    make \
+	    python-is-python3 \
+	    tzdata \
 	    vim \
 	    wget
 
@@ -120,6 +65,8 @@ RUN chmod 0440 /etc/sudoers.d/$USERNAME
 ################################################################################
 RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Run this once again so we have an up-to-date apt database
+RUN apt update
 
 ################################################################################
 # Start user related configuration / TRS
