@@ -1,26 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Two Parameters required, first is email, second is Username(in quotes if includes space(s))
-# example: ./trs-install don.harbin@linaro.org "Don Harbin"
+MANIFEST=default-latest.xml
+USE_HOST_YOCTO_CACHE=
 
-echo "email address: " "$1"
-echo "User name: " "$2"
-echo "git config --list"
-git config --list
+################################################################################
+# Parse arguments
+################################################################################
+while getopts "m:rh" opt; do
+	case $opt in
+		h)
+			USE_HOST_YOCTO_CACHE=1
+			;;
+		m)
+			MANIFEST=$OPTARG
+			;;
+		r)
+			USE_REFERENCE=1
+			;;
+		*)
+			#Printing error message
+			echo "invalid option or argument $OPTARG"
+			;;
+	esac
+done
 
-git config --global user.email "$1"
-git config --global user.name "$2"
-git config --list
+################################################################################
+# Use host provided cache?
+################################################################################
+if [ -z $USE_HOST_YOCTO_CACHE ]; then
+	echo "Not using Yocto cache from host"
+	rm build/*
+else
+	echo "Using Yocto cache from host"
+	ln -snf $HOME/yocto_cache/downloads build/downloads
+	ln -snf $HOME/yocto_cache/state-cache build/state-cache
+fi
 
-export PATH=$PATH:/home/dev/.local/bin
+################################################################################
+# Get the source code
+################################################################################
+if [ -z $USE_REFERENCE ]; then
+	echo "Not using reference from host"
+	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST
+else
+	echo "Using reference from host"
+	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/reference
+fi
 
-sudo repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git
-sudo repo sync -j3
+repo sync -j10
 
-echo "#################"
-echo "# BUILD PRE-REQS"
-echo "#################"
-make apt-prereqs
+################################################################################
+# Setup pre-reqs
+################################################################################
+yes | make apt-prereqs
 make python-prereqs
 
-source /home/dev/trs-workspace/.pyvenv/bin/activate
+################################################################################
+# Source python environment and start the build
+################################################################################
+source .pyvenv/bin/activate
+nice -1 make
