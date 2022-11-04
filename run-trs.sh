@@ -50,5 +50,4 @@ sudo docker run -it \
 	-v $DL_DIR:/home/dev/yocto_cache/downloads \
 	-v $SSTATE_DIR:/home/dev/yocto_cache/state-cache \
 	-v $REPO_REFERENCE:/home/dev/reference \
-	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	$IMAGE
