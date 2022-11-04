@@ -109,20 +109,17 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 ################################################################################
+# Sudo setup
+################################################################################
+RUN apt -y --allow-downgrades --allow-remove-essential --allow-change-held-packages install sudo
+RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
+RUN chmod 0440 /etc/sudoers.d/$USERNAME
+
+################################################################################
 # Clean up
 ################################################################################
 RUN apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
-################################################################################
-# Sudo setup
-################################################################################
-# Add sudo support. Omit if you don't need to install software after connecting.
-#    && apt-get update \
-#    && apt-get install -y sudo \
-#    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-#    && chmod 0440 /etc/sudoers.d/$USERNAME \
-#    && echo $USERNAME:password | chpasswd
 
 ################################################################################
 # Start user related configuration / TRS
