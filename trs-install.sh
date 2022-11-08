@@ -33,7 +33,7 @@ if [ -z $USE_HOST_YOCTO_CACHE ]; then
 else
 	echo "Using Yocto cache from host"
 	ln -snf $HOME/yocto_cache/downloads build/downloads
-	ln -snf $HOME/yocto_cache/state-cache build/state-cache
+	ln -snf $HOME/yocto_cache/sstate-cache build/sstate-cache
 fi
 
 ################################################################################
