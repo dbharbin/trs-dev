@@ -2,7 +2,7 @@
 
 IMAGE=trs
 export GID=$(id -g)
-export GID=$(id -u)
+export UID=$(id -u)
 REPO_REFERENCE=/tmp
 
 ################################################################################
