@@ -81,14 +81,13 @@ RUN chown -R $USERNAME:$USERNAME $WORKSPACE
 USER $USERNAME
 ENV PATH="${PATH}:/home/${USERNAME}/.local/bin"
 
-
 # Configure git so repo won't complain later on
 RUN git config --global user.name "${USERNAME}"
 RUN git config --global user.email "trs@linaro.org"
 
 RUN chmod a+x $WORKSPACE/trs-install.sh
 RUN ln -snf $HOME/yocto_cache/downloads $WORKSPACE/build/downloads
-RUN ln -snf $HOME/yocto_cache/state-cache $WORKSPACE/build/state-cache
+RUN ln -snf $HOME/yocto_cache/sstate-cache $WORKSPACE/build/sstate-cache
 
 ################################################################################
 # SSH configuration
