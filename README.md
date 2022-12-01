@@ -12,13 +12,13 @@ Docker version 20.10.19, build d85ef84;
 ```
 ### Set up dev directory and clone the repo (Host)
 ```
-(Host) cd dev/trs-dec1/         # dev/trs-dec1 is the development directory. Name as you wish
-(Host) git clone https://github.com/dbharbin/trs-dev.git
-(Host) cd trs-dev/
+cd dev/trs-dec1/         # dev/trs-dec1 is the development directory. Name as you wish
+git clone https://github.com/dbharbin/trs-dev.git
+cd trs-dev/
 ```
 ### Build the docker image named “trs” (Host)
 ```
-(Host) docker build . -t trs
+docker build . -t trs
 ```
 
 Assuming you had no other images, you should see soemthing similar to the following after completion of the docker build:
