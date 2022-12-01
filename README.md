@@ -5,18 +5,18 @@ Leveraging this repo, with just a few steps you can have a trs-development envir
 
 # Installation Instructions
 
-* Assure Docker is installed on your local development machine. If not, install it. (Host)
+### Assure Docker is installed on your local development machine. If not, install it. (Host)
 ```
 ~/dev$: docker --version;
 Docker version 20.10.19, build d85ef84;
 ```
-# Set up dev directory and clone the repo (Host)
+### Set up dev directory and clone the repo (Host)
 ```
 (Host) cd dev/trs-dec1/         # dev/trs-dec1 is the development directory. Name as you wish
 (Host) git clone https://github.com/dbharbin/trs-dev.git
 (Host) cd trs-dev/
 ```
-# Build the docker image named “trs” (Host)
+### Build the docker image named “trs” (Host)
 ```
 (Host) docker build . -t trs
 ```
@@ -28,7 +28,7 @@ REPOSITORY   TAG       IMAGE ID         CREATED            SIZE
 trs                         latest    2a10a95eacd2   10 seconds ago   336MB
 ubuntu          22.04     a8780b506fa4   4 weeks ago      77.8MB
 ```
-# Premake directories and download source to host machine; a one time step on initial install only (Host)
+### Premake directories and download source to host machine; a one time step on initial install only (Host)
 ```
 mkdir $HOME/dev/trs-dec1/trs-repo 
 cd $HOME/dev/trs-dec1/trs-repo    # Note dev/trs-dec1/trs-repo is used as -r in the run-trs.sh from container…
@@ -36,13 +36,13 @@ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git 
 repo sync 
 ```
 
-# Enter the trs docker container (Host)
+### Enter the trs docker container (Host)
 ```
 cd ../trs-dev                                # Navigate back to the trs-dev source repo location
 ./run-trs.sh -r $HOME/dev/trs-dec1/trs-repo
 ```
 
-# Make trs from container (Container $)
+### Make trs from container (Container $)
 ```
 $ cd $HOME/trs-workspace
 $ ./trs-install.sh                # This installs trs source and all it's dependencies in the container then makes the source.
@@ -51,7 +51,7 @@ $ ./trs-install.sh                # This installs trs source and all it's depend
 
 # Additional getting started tips
 
-# Updating your repos
+## Updating your repos
 Once you've begun development, you'll want to be intentional about keeping the dependency repos in sync with the upstream. Determining how you want to keep this in sync is case by case.  This section will show a couple of example commands in keeping in sync with the upstream
 `command here` - Command to update the TRS repo from within the container
 `command here` - Command to creates a CRON that runs every 2 weeks to update the TRS repo in the container
@@ -62,6 +62,6 @@ Yocto can take a long time to build.  This section describes a couple of things 
 
 Assuring that you've minimized overhead on you system such as freeing up as much RAM as possible through closing browser tabs, turnning off VPN's, etc. can also reduce builds times.
 
-# Other Platforms
+# Other Platform Instructions
+TBD
 
-# Next Steps/To-Dos:  Follow on guides.  Starting development, Customizing Builds, 
