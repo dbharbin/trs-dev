@@ -25,8 +25,8 @@ Assuming you had no other images, you should see soemthing similar to the follow
 ```
 ~/dev/trs-dec1/trs-dev$ docker images
 REPOSITORY   TAG       IMAGE ID         CREATED            SIZE
-trs                         latest    2a10a95eacd2   10 seconds ago   336MB
-ubuntu          22.04     a8780b506fa4   4 weeks ago      77.8MB
+trs          latest    2a10a95eacd2   10 seconds ago   336MB
+ubuntu       22.04     a8780b506fa4   4 weeks ago      77.8MB
 ```
 ### Download TRS source to share location on host machine; a one time step on initial install only (Host)
 ```
