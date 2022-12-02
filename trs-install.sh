@@ -41,7 +41,7 @@ fi
 ################################################################################
 if [ -z $USE_REFERENCE ]; then
 	echo "Not using reference from host"
-	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST
+	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/local-reference
 else
 	echo "Using reference from host"
 	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/reference
