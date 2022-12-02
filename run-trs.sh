@@ -5,7 +5,7 @@ export GID=$(id -u)
 
 # Defaults
 IMAGE=trs
-REPO_REFERENCE=$HOME/trs-reference-repo
+REPO_REFERENCE=$HOME/trs-reference_repo
 
 ################################################################################
 # Parse arguments
