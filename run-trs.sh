@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-IMAGE=trs
 export GID=$(id -g)
 export GID=$(id -u)
-REPO_REFERENCE=$HOME/tmp_trs_repo
+
+# Defaults
+IMAGE=trs
+REPO_REFERENCE=$HOME/trs-reference-repo
 
 ################################################################################
 # Parse arguments
