@@ -53,7 +53,7 @@ PING google.com (142.250.72.142) 56(84) bytes of data.
 ^C
 ```
 Now ready to do your build!
-
+```
 $ cd $HOME/trs-workspace
 $ ./trs-install.sh -h -r          
 ```
