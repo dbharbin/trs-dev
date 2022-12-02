@@ -2,6 +2,7 @@
 
 MANIFEST=default-latest.xml
 USE_HOST_YOCTO_CACHE=
+USE_REFERENCE=
 
 ################################################################################
 # Parse arguments
