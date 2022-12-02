@@ -3,7 +3,7 @@
 IMAGE=trs
 export GID=$(id -g)
 export GID=$(id -u)
-REPO_REFERENCE=/tmp
+REPO_REFERENCE=$HOME/tmp_trs_repo
 
 ################################################################################
 # Parse arguments
@@ -35,6 +35,9 @@ if [ -z $SSTATE_DIR ]; then
 	mkdir -p $HOME/yocto_cache/sstate-cache
 	SSTATE_DIR=$HOME/yocto_cache/sstate-cache
 fi
+
+echo "Create the TRS shared repo directory on the host if doesn't already exist"
+mkdir -p $REPO_REFERENCE
 
 ################################################################################
 # Run docker
