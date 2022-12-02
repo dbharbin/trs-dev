@@ -30,9 +30,9 @@ ubuntu          22.04     a8780b506fa4   4 weeks ago      77.8MB
 ```
 ### Premake directories and download source to host machine; a one time step on initial install only (Host)
 ```
-mkdir $HOME/dev/trs-dec1/trs-repo 
-cd $HOME/dev/trs-dec1/trs-repo    # Note dev/trs-dec1/trs-repo is used as -r in the run-trs.sh from container…
-repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default.xml
+mkdir $HOME/trs-reference-repo 
+cd $HOME/trs-reference-repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
+repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default-latest.xml
 repo sync 
 ```
 
