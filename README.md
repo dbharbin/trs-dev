@@ -62,6 +62,11 @@ Yocto can take a long time to build.  This section describes a couple of things 
 
 Assuring that you've minimized overhead on you system such as freeing up as much RAM as possible through closing browser tabs, turnning off VPN's, etc. can also reduce builds times.
 
-# Other Platform Instructions
+## Other Platform Instructions
 TBD
+
+## References:
+* [TRS Docs](https://trs.readthedocs.io/en/latest/install/install.html#install-repo)
+* [Learn more about Linaro Membership](https://www.linaro.org/membership/)
+* [Sign up for Linaro's Monthly Newsletter](https://linaro.us3.list-manage.com/subscribe/post?u=14baaae786342d0d405ee59c2&id=bcfa4abc8f)
 
