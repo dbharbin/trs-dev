@@ -43,7 +43,7 @@ cd $HOME/dev/trs-dec1/trs-dev                                # Navigate back to 
 ```
 
 ### Make trs from container (Container $)
-Always nice to confirm connectivity.  Debug is none
+Always nice to confirm connectivity.  Debug if can't successfully ping
 ```
 dev@e6bc4a67b029:~/trs-workspace$ ping google.com
 PING google.com (142.250.72.142) 56(84) bytes of data.
