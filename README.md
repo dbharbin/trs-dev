@@ -28,7 +28,7 @@ REPOSITORY   TAG       IMAGE ID         CREATED            SIZE
 trs                         latest    2a10a95eacd2   10 seconds ago   336MB
 ubuntu          22.04     a8780b506fa4   4 weeks ago      77.8MB
 ```
-### Premake directories and download source to host machine; a one time step on initial install only (Host)
+### Download TRS source to share location on host machine; a one time step on initial install only (Host)
 ```
 mkdir $HOME/trs-reference-repo 
 cd $HOME/trs-reference-repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
