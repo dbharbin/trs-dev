@@ -30,16 +30,16 @@ ubuntu          22.04     a8780b506fa4   4 weeks ago      77.8MB
 ```
 ### Download TRS source to share location on host machine; a one time step on initial install only (Host)
 ```
-mkdir $HOME/trs-reference-repo 
-cd $HOME/trs-reference-repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
+mkdir $HOME/trs_reference_repo 
+cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
 repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default-latest.xml
 repo sync 
 ```
 
 ### Enter the trs docker container (Host)
 ```
-cd ../trs-dev                                # Navigate back to the trs-dev source repo location
-./run-trs.sh -r $HOME/dev/trs-dec1/trs-repo
+cd $HOME/dev/trs-dec1/trs-dev                                # Navigate back to the trs-dev source repo location
+./run-trs.sh
 ```
 
 ### Make trs from container (Container $)
