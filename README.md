@@ -36,14 +36,24 @@ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git 
 repo sync 
 ```
 
-### Enter the trs docker container (Host)
+### Create and enter a new trs docker container (Host)
 ```
 cd $HOME/dev/trs-dec1/trs-dev                                # Navigate back to the trs-dev source repo location
 ./run-trs.sh
 ```
 
 ### Make trs from container (Container $)
+Always nice to confirm connectivity.  Debug is none
 ```
+dev@e6bc4a67b029:~/trs-workspace$ ping google.com
+PING google.com (142.250.72.142) 56(84) bytes of data.
+64 bytes from lax17s49-in-f14.1e100.net (142.250.72.142): icmp_seq=1 ttl=117 time=22.6 ms
+64 bytes from lax17s49-in-f14.1e100.net (142.250.72.142): icmp_seq=2 ttl=117 time=24.4 ms
+64 bytes from lax17s49-in-f14.1e100.net (142.250.72.142): icmp_seq=3 ttl=117 time=19.7 ms
+^C
+```
+Now ready to do your build!
+
 $ cd $HOME/trs-workspace
 $ ./trs-install.sh -h -r          
 ```
