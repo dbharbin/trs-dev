@@ -45,11 +45,12 @@ cd ../trs-dev                                # Navigate back to the trs-dev sour
 ### Make trs from container (Container $)
 ```
 $ cd $HOME/trs-workspace
-$ ./trs-install.sh -h -r          # This installs trs source and all it's dependencies in the container then makes the source.
-                                  # The -h means use the host yocto cache, leaving off will use local container
-                                  # The -r means to reference a trs repo on the host (default location on host == /tmp)
-                                  # Note the first time build can take many hours.
+$ ./trs-install.sh -h -r          
 ```
+The above installs trs source and all it's dependencies in the container then makes the source.
+* The -h means use the host yocto cache, leaving off will use local container
+* The -r means to reference a trs repo on the host (default location on host == /tmp)
+* Note the first time build can take many hours.
 
 # Additional getting started tips
 
