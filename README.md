@@ -53,8 +53,8 @@ $ ./trs-install.sh                # This installs trs source and all it's depend
 
 ## Updating your repos
 Once you've begun development, you'll want to be intentional about keeping the dependency repos in sync with the upstream. Determining how you want to keep this in sync is case by case.  This section will show a couple of example commands in keeping in sync with the upstream
-`command here` - Command to update the TRS repo from within the container
-`command here` - Command to creates a CRON that runs every 2 weeks to update the TRS repo in the container
+- `command here` - Command to update the TRS repo from within the container
+- `command here` - Command to creates a CRON that runs every 2 weeks to update the TRS repo in the container
 
 
 ## Decreasing build times 
