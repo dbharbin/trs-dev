@@ -61,6 +61,14 @@ The above installs trs source and all it's dependencies in the container then ma
 * The -h means use the host yocto cache, leaving off will use local container
 * The -r means to reference a trs repo on the host (default location on host == /tmp, but recall in the above instructions we made in `$HOME/dev/trs-dec1/trs-repo`)
 * Note the first time build can take many hours.
+* During a build, it's not uncommon to have warnings scroll by. Thes are typically of no consequence during initial development.
+```
+WARNING: mc:rpi4:rpi4-firmware-1.0-r0 do_unpack: QA Issue: rpi4-firmware: SRC_URI uses unstable GitHub/GitLab archives, convert recipe to use git protocol [src-uri-bad]
+
+WARNING: mc:trs-qemuarm64:clevis-git-r2 do_patch: URL: git://github.com/latchset/clevis.git;protocol=git;branch=master uses git protocol which is no longer supported by github. Please change to ;protocol=https in the url.
+
+WARNING: mc:trs-qemuarm64:clevis-git-r2 do_patch: URL: git://github.com/latchset/clevis.git;protocol=git;branch=master uses git protocol which is no longer supported by github. Please change to ;protocol=https in the url.
+```
 
 # Additional getting started tips
 
