@@ -76,6 +76,7 @@ WARNING: mc:trs-qemuarm64:clevis-git-r2 do_patch: URL: git://github.com/latchset
 Once you've begun development, you'll want to be intentional about keeping the dependency trs repo in a known state. Determining how you want to keep this in sync is case by case.  This section shows a couple of example commands in keeping in sync with the upstream
 
 **Sync your shared trs repo with the upstream tip**
+
 In this case, perform the following commands (Host)
 ```
 $ cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
@@ -83,6 +84,7 @@ $ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.gi
 ```
 
 **Sync with a stable release**
+
 In this example, if version 0.1 for example, was released, to sync with that version perform the following commands:
 ```
 $ cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
