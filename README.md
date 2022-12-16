@@ -72,11 +72,22 @@ WARNING: mc:trs-qemuarm64:clevis-git-r2 do_patch: URL: git://github.com/latchset
 
 # Additional getting started tips
 
-## Updating your repos
-Once you've begun development, you'll want to be intentional about keeping the dependency repos in sync with the upstream. Determining how you want to keep this in sync is case by case.  This section will show a couple of example commands in keeping in sync with the upstream
-- `command here` - Command to update the TRS repo from within the container
-- `command here` - Command to creates a CRON that runs every 2 weeks to update the TRS repo in the container
+## Updating your trs shared repo
+Once you've begun development, you'll want to be intentional about keeping the dependency trs repo in a known state. Determining how you want to keep this in sync is case by case.  This section shows a couple of example commands in keeping in sync with the upstream
 
+**Sync your shared trs repo with the upstream tip**
+In this case, perform the following commands (Host)
+```
+$ cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
+$ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default.xml
+```
+
+**Sync with a stable release**
+In this example, if version 0.1 for example, was released, to sync with that version perform the following commands:
+```
+$ cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
+$ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default.xml -b v0.1
+```
 
 ## Decreasing build times 
 Yocto can take a long time to build.  This section describes a couple of things set up in this installation to decrease that timeAfter the install, you'll notice that a dirctory has been created `$HOME/yocto_cache`. It includes two subdirectories, /yocto_cache/downloads and /yocto_cache/sstate-cache, that have been place in your host OS and shared with the container.  These are here to reduce build times first and formost.  Alternatively if you must use a different container on the same host, if built by the scripts in this repo as shared above, you will not need to set this up on the new install and thus skipping the "first build' use case that can often be many hours long. If interested in just a bit more detail, a nice writeup can be seen [here](https://tutorialadda.com/yocto/how-to-speed-up-the-yocto-build-process)
