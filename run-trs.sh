@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export GID=$(id -g)
-export GID=$(id -u)
+export UID=$(id -u)
 
 # Defaults
 IMAGE=trs
