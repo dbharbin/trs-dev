@@ -81,6 +81,7 @@ In this case, perform the following commands (Host)
 ```
 $ cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
 $ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default.xml
+$ repo sync
 ```
 
 **Sync with a stable release**
@@ -89,6 +90,7 @@ In this example, if version 0.1 for example, was released, to sync with that ver
 ```
 $ cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
 $ repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default.xml -b v0.1
+$ repo sync
 ```
 
 ## Decreasing build times 
