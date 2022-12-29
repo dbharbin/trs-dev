@@ -59,7 +59,7 @@ $ ./trs-install.sh -h -r
 ```
 The above installs trs source and all it's dependencies in the container then makes the source.
 * The -h means use the host yocto cache, leaving off will use local container
-* The -r means to reference a trs repo on the host (default location on host == /tmp, but recall in the above instructions we made in `$HOME/dev/trs-dec1/trs-repo`)
+* The -r means to reference a trs repo on the host (default location on host == `$HOME/trs_reference_repo`)
 * Note the first time build can take many hours.
 * During a build, it's not uncommon to have warnings scroll by. Thes are typically of no consequence during initial development.
 ```
