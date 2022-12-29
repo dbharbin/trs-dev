@@ -31,7 +31,7 @@ ubuntu       22.04     a8780b506fa4   4 weeks ago      77.8MB
 ### Download TRS source to share location on host machine; a one time step on initial install only (Host)
 ```
 mkdir $HOME/trs_reference_repo 
-cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is used as default in the run-trs.sh from container
+cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is the container side default defined in the run-trs.sh
 repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default-latest.xml
 repo sync 
 ```
