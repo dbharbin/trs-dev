@@ -18,7 +18,7 @@ cd trs-dev/
 ```
 ### Build the docker image named “trs” (Host)
 ```
-docker build . -t trs
+docker build -t trs .
 ```
 
 Assuming you had no other images, you should see soemthing similar to the following after completion of the docker build:
