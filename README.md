@@ -17,7 +17,7 @@ git clone https://github.com/dbharbin/trs-dev.git
 cd trs-dev/
 ```
 ### Build the docker image named “trs” (Host)
-IMPORTANT: You must modify the USER_UID and USER_GID fields in the Dockerfile to align with the host UID and GID!
+IMPORTANT: Prior to building the docker image, the user must update the USER_UID and USER_GID values in the **Dockerfile** to align with the host UID and GID!
 To find these values, from the Linux Host command line, perform the following:
 ```
 ~/dev/dec6/trs-dev$ id -u
