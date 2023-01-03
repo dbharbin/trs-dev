@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MANIFEST=default-latest.xml
+MANIFEST=default.xml
 USE_HOST_YOCTO_CACHE=
 USE_REFERENCE=
 
@@ -45,7 +45,7 @@ if [ -z $USE_REFERENCE ]; then
 	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/local-reference
 else
 	echo "Using reference from host"
-	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/reference
+	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/trs-reference-repo
 fi
 
 repo sync -j10

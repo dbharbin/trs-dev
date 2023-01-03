@@ -40,8 +40,10 @@ ARG USERNAME=dev
 ARG USER_UID=1000
 ARG USER_GID=1000
 
-# Exchange 1000 to the user id of the current user
-RUN useradd --shell /bin/bash -u $USER_UID -o -c "" -m $USERNAME
+# ^^^ Exchange 1000 to the user id of the current user
+
+RUN groupadd -g $USER_GID -o $USERNAME
+RUN useradd --shell /bin/bash -u $USER_UID -g $USER_GID -o -c "" -m $USERNAME
 RUN echo "${USERNAME}:${USERNAME}" | chpasswd
 
 ################################################################################
@@ -72,11 +74,15 @@ RUN apt update
 ################################################################################
 # Start user related configuration / TRS
 ################################################################################
-ENV WORKSPACE=/home/dev/trs-workspace
-RUN mkdir -p $WORKSPACE/build
-WORKDIR $WORKSPACE
+ENV WORKSPACE=/home/dev
+RUN mkdir -p $WORKSPACE/trs-workspace/build
+RUN mkdir -p $WORKSPACE/yocto_cache/sstate-cache
+RUN mkdir -p $WORKSPACE/yocto_cache/downloads
+RUN mkdir $WORKSPACE/trs-reference-repo
+WORKDIR $WORKSPACE/trs-workspace
 
-ADD trs-install.sh $WORKSPACE/trs-install.sh
+ADD trs-install.sh $WORKSPACE/trs-workspace/trs-install.sh
+RUN chmod a+x $WORKSPACE/trs-workspace/trs-install.sh
 RUN chown -R $USERNAME:$USERNAME $WORKSPACE
 
 USER $USERNAME
@@ -86,9 +92,9 @@ ENV PATH="${PATH}:/home/${USERNAME}/.local/bin"
 RUN git config --global user.name "${USERNAME}"
 RUN git config --global user.email "trs@linaro.org"
 
-RUN chmod a+x $WORKSPACE/trs-install.sh
-RUN ln -snf $HOME/yocto_cache/downloads $WORKSPACE/build/downloads
-RUN ln -snf $HOME/yocto_cache/sstate-cache $WORKSPACE/build/sstate-cache
+RUN chmod a+x $WORKSPACE/trs-workspace/trs-install.sh
+#RUN ln -snf $HOME/yocto_cache/downloads $WORKSPACE/build/downloads
+#RUN ln -snf $HOME/yocto_cache/sstate-cache $WORKSPACE/build/sstate-cache
 
 ################################################################################
 # SSH configuration

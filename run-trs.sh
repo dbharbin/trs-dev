@@ -6,6 +6,8 @@ export UID=$(id -u)
 # Defaults
 IMAGE=trs
 REPO_REFERENCE=$HOME/trs_reference_repo
+USERNAME=dev
+CONTAINER_HOME=/home/$USERNAME
 
 ################################################################################
 # Parse arguments
@@ -46,15 +48,17 @@ mkdir -p $REPO_REFERENCE
 ################################################################################
 echo "Running docker instance with params:"
 echo "IMAGE:          $IMAGE"
+echo "USERNAME:       $USERNAME"
 echo "UID:            $UID"
 echo "GID:            $GID"
 echo "REPO_REFERENCE: $REPO_REFERENCE"
 echo "DL_DIR:         $DL_DIR"
 echo "SSTATE_DIR:     $SSTATE_DIR"
 
+
 sudo docker run -it \
-	--user dev:$GID \
-	-v $DL_DIR:/home/dev/yocto_cache/downloads \
-	-v $SSTATE_DIR:/home/dev/yocto_cache/sstate-cache \
-	-v $REPO_REFERENCE:/home/dev/reference \
+	--user $USERNAME \
+	-v $DL_DIR:$CONTAINER_HOME/yocto_cache/downloads \
+	-v $SSTATE_DIR:$CONTAINER_HOME/yocto_cache/sstate-cache \
+	-v $REPO_REFERENCE:$CONTAINER_HOME/trs-reference-repo \
 	$IMAGE
