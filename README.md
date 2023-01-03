@@ -43,7 +43,7 @@ ubuntu       22.04     a8780b506fa4   4 weeks ago      77.8MB
 ```
 mkdir $HOME/trs_reference_repo 
 cd $HOME/trs_reference_repo    # $HOME/trs-reference-repo is the container side default defined in the run-trs.sh
-repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default-latest.xml
+repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m default.xml
 repo sync 
 ```
 
