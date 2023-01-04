@@ -31,6 +31,10 @@ After that, you are ready to build the docker image.
 ```
 docker build -t trs .
 ```
+* note: During a docker build, it's not uncommon to see warnings such as the following that can be ignored:
+```
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+```
 
 Assuming you had no other images, you should see soemthing similar to the following after completion of the docker build:
 ```
