@@ -30,7 +30,7 @@ docker build -t trs .
 If want the container to have the same UID/GID as your dev host, execute the command as below.
 This is **recommended** and less likley to run into permission issues between the host and the container.
 ```
-docker build --build-arg USER_UID=$'id -u' --build-arg USER_GID=$'id -g' -t trs .
+docker build --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) -t trs .
 ```
 
 * note: During a docker build, it's not uncommon to see warnings such as the following that can be ignored:
