@@ -18,7 +18,8 @@ ARG DEVELOPMENT_DIR=trs-workspace
 ARG USERNAME=dev
 
 
-# Uncomment the following for the container to hard code the UID and GID
+# Notes:  Per Readme, these values are overridden by the docker build command if want to use the same UiD/GID as the host.
+# To use the hard coded UID and GID below, udate the 2 fields below to deire values and follow the alternative docker build shown in the Readme. 
 ARG USER_UID=1000
 ARG USER_GID=1000
 
