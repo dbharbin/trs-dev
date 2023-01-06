@@ -3,6 +3,9 @@ So you've made the decision to start some development leveraging Linaro's TRS!
 This repo has been developed to aid developers to quickly set up an initial TRS development environment.
 Leveraging this repo, with just a few steps you can have a trs-development environment running in a docker container. The benefits of using a container for your development environment include quickly reproducing your environment in the event of distaster recovery or development environment corruption, speed of setup, all devs in a similar environment, can be customized/extended to meet your needs, usable across different host platforms, and more.
 
+# Tested environments
+This has currently been tested on an Ubuntu 20.04 desktop machine and a share server environment also based on Ubuntu 20.04
+
 # Installation Instructions
 
 ### Assure Docker is installed on your local development machine. If not, install it. (Host)
@@ -17,20 +20,19 @@ git clone https://github.com/dbharbin/trs-dev.git
 cd trs-dev/
 ```
 ### Build the docker image named “trs” (Host)
-IMPORTANT: Prior to building the docker image, the user must update the USER_UID and USER_GID values in the **Dockerfile** to align with the host UID and GID!
-To find these values, from the Linux Host command line, perform the following:
-```
-~/dev/dec6/trs-dev$ id -u
-11193
-~/dev/dec6/trs-dev$ id -g
-10000
-~/dev/dec6/trs-dev$
-```
-Then edit your Dockerfile and update these fields.
-After that, you are ready to build the docker image.
+Two options to build.  1) With hard coded UID/GID 2) Using the hosts UID/GID (recommended)
+
+For the hard code use case, modify the Dockerfile UID/GID values, save it, then build
 ```
 docker build -t trs .
 ```
+
+If want the container to have the same UID/GID as your dev host, execute the command as below.
+This is **recommended** and less likley to run into permission issues between the host and the container.
+```
+docker build --build-arg USER_UID=$'id -u' --build-arg USER_GID=$'id -g' -t trs .
+```
+
 * note: During a docker build, it's not uncommon to see warnings such as the following that can be ignored:
 ```
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
