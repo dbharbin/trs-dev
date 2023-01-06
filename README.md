@@ -22,18 +22,18 @@ cd trs-dev/
 ### Build the docker image named “trs” (Host)
 Two options to build.  1) With hard coded UID/GID 2) Using the hosts UID/GID (recommended)
 
-For the hard code use case, modify the Dockerfile UID/GID values, save it, then build
+1) For the hard code use case, modify the Dockerfile UID/GID values, save it, then build
 ```
 docker build -t trs .
 ```
 
-If want the container to have the same UID/GID as your dev host, execute the command as below.
+1) If want the container to have the same UID/GID as your dev host, execute the command as below.
 This is **recommended** and less likley to run into permission issues between the host and the container.
 ```
 docker build --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) -t trs .
 ```
 
-* note: During a docker build, it's not uncommon to see warnings such as the following that can be ignored:
+note: During a docker build, it's not uncommon to see warnings such as the following that can be ignored:
 ```
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 ```
