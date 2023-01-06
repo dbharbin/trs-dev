@@ -27,7 +27,7 @@ Two options to build.  1) With hard coded UID/GID 2) Using the hosts UID/GID (re
 docker build -t trs .
 ```
 
-1) If want the container to have the same UID/GID as your dev host, execute the command as below.
+2) If want the container to have the same UID/GID as your dev host, execute the command as below.
 This is **recommended** and less likley to run into permission issues between the host and the container.
 ```
 docker build --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) -t trs .
