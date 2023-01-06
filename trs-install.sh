@@ -3,6 +3,7 @@
 MANIFEST=default.xml
 USE_HOST_YOCTO_CACHE=
 USE_REFERENCE=
+CONTAINER_TRS_REPO=trs-reference-repo
 
 ################################################################################
 # Parse arguments
@@ -33,8 +34,8 @@ if [ -z $USE_HOST_YOCTO_CACHE ]; then
 	rm build/*
 else
 	echo "Using Yocto cache from host"
-	ln -snf $HOME/yocto_cache/downloads build/downloads
-	ln -snf $HOME/yocto_cache/sstate-cache build/sstate-cache
+#	ln -snf $HOME/yocto_cache/downloads build/downloads
+#	ln -snf $HOME/yocto_cache/sstate-cache build/sstate-cache
 fi
 
 ################################################################################
@@ -45,7 +46,7 @@ if [ -z $USE_REFERENCE ]; then
 	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/local-reference
 else
 	echo "Using reference from host"
-	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/trs-reference-repo
+	yes | repo init -u https://gitlab.com/Linaro/trusted-reference-stack/trs-manifest.git -m $MANIFEST --reference $HOME/$CONTAINER_TRS_REPO
 fi
 
 repo sync -j10

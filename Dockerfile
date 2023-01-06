@@ -8,6 +8,25 @@ ENV TZ=Europe/Stockholm
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ################################################################################
+# Configuration parameters to set up prior to build
+################################################################################
+# Container directories for the Yocto Cache and TRS reference share
+ARG YOCTO_CACHE=yocto_cache
+ARG REF_REPO=trs-reference-repo
+ARG DEVELOPMENT_DIR=trs-workspace
+
+ARG USERNAME=dev
+
+
+# Uncomment the following for the container to hard code the UID and GID
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+# ^^^ Can either exchange 1000 to desired user id and group id 
+# Or pass the UIDs in docker build command options (preferred, see readme)
+
+
+################################################################################
 # APT packages
 ################################################################################
 RUN apt update
@@ -36,12 +55,6 @@ RUN chmod a+x /bin/repo
 ################################################################################
 # User and group configuration
 ################################################################################
-ARG USERNAME=dev
-ARG USER_UID=1000
-ARG USER_GID=1000
-
-# ^^^ Exchange 1000 to the user id of the current user
-
 RUN groupadd -g $USER_GID -o $USERNAME
 RUN useradd --shell /bin/bash -u $USER_UID -g $USER_GID -o -c "" -m $USERNAME
 RUN echo "${USERNAME}:${USERNAME}" | chpasswd
@@ -74,15 +87,16 @@ RUN apt update
 ################################################################################
 # Start user related configuration / TRS
 ################################################################################
-ENV WORKSPACE=/home/dev
-RUN mkdir -p $WORKSPACE/trs-workspace/build
-RUN mkdir -p $WORKSPACE/yocto_cache/sstate-cache
-RUN mkdir -p $WORKSPACE/yocto_cache/downloads
-RUN mkdir $WORKSPACE/trs-reference-repo
-WORKDIR $WORKSPACE/trs-workspace
+ENV WORKSPACE=/home/$USERNAME/$DEVELOPMENT_DIR
+RUN mkdir -p $WORKSPACE/build
+RUN mkdir -p /home/$USERNAME/$YOCTO_CACHE/sstate-cache
+RUN mkdir -p /home/$USERNAME/$YOCTO_CACHE/downloads
+RUN mkdir /home/$USERNAME/$REF_REPO
 
-ADD trs-install.sh $WORKSPACE/trs-workspace/trs-install.sh
-RUN chmod a+x $WORKSPACE/trs-workspace/trs-install.sh
+WORKDIR $WORKSPACE
+
+ADD trs-install.sh $WORKSPACE/trs-install.sh
+RUN chmod a+x $WORKSPACE/trs-install.sh
 RUN chown -R $USERNAME:$USERNAME $WORKSPACE
 
 USER $USERNAME
@@ -92,9 +106,9 @@ ENV PATH="${PATH}:/home/${USERNAME}/.local/bin"
 RUN git config --global user.name "${USERNAME}"
 RUN git config --global user.email "trs@linaro.org"
 
-RUN chmod a+x $WORKSPACE/trs-workspace/trs-install.sh
-#RUN ln -snf $HOME/yocto_cache/downloads $WORKSPACE/build/downloads
-#RUN ln -snf $HOME/yocto_cache/sstate-cache $WORKSPACE/build/sstate-cache
+RUN chmod a+x $WORKSPACE/trs-install.sh
+RUN ln -snf $HOME/$YOCTO_CACHE/downloads $WORKSPACE/build/downloads
+RUN ln -snf $HOME/$YOCTO_CACHE/sstate-cache $WORKSPACE/build/sstate-cache
 
 ################################################################################
 # SSH configuration
