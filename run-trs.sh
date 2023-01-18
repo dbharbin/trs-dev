@@ -73,7 +73,7 @@ echo "CONTAINER_SSTATE_DIR:     $CONTAINER_SSTATE_DIR"
 # so that the trs build works correctly. These are needed in the trs/build/makefile 
 # to define the directory location for the yocto downloads and sstate caches.
 ################################################################################
-sudo docker run -it \
+docker run -it \
 	--user $USERNAME \
 	-e DL_DIR=$CONTAINER_DL_DIR \
 	-e SSTATE_DIR=$CONTAINER_SSTATE_DIR \
