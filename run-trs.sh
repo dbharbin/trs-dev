@@ -83,7 +83,7 @@ docker run -it \
 	$IMAGE
 
 # Use this one when the UID/GID defined in the Dockerfile. Must update Dockerfile as well.
-#sudo docker run -it \
+#docker run -it \
 #	--user $USERNAME \
 #	-v $HOST_DL_DIR:$CONTAINER_HOME/$CONTAINER_YOCTO_CACHE/downloads \
 #	-v $HOST_SSTATE_DIR:$CONTAINER_HOME/$CONTAINER_YOCTO_CACHE/sstate-cache \
