@@ -33,18 +33,20 @@ done
 
 if [ -z "$DL_DIR" ]; then
 	echo "DL_DIR not set, creating it under $HOME/yocto_cache"
-	mkdir -p $HOME/$HOST_YOCTO_CACHE/downloads
-	HOST_DL_DIR=$HOME/$HOST_YOCTO_CACHE/downloads
-	CONTAINER_DL_DIR=$CONTAINER_DEV_DIR/build/downloads
+	DL_DIR=$HOME/$HOST_YOCTO_CACHE/downloads
+	mkdir -p $DL_DIR
 fi
+HOST_DL_DIR=$DL_DIR
+CONTAINER_DL_DIR=$CONTAINER_DEV_DIR/build/downloads
 
 
 if [ -z $SSTATE_DIR ]; then
 	echo "SSTATE_DIR not set, creating it under $HOME/yocto_cache"
-	mkdir -p $HOME/$HOST_YOCTO_CACHE/sstate-cache
-	HOST_SSTATE_DIR=$HOME/$HOST_YOCTO_CACHE/sstate-cache
-	CONTAINER_SSTATE_DIR=$CONTAINER_DEV_DIR/build/sstate-cache
+	SSTATE_DIR=$HOME/$HOST_YOCTO_CACHE/sstate-cache
+	mkdir -p $SSTATE_DIR
 fi
+HOST_SSTATE_DIR=$SSTATE_DIR
+CONTAINER_SSTATE_DIR=$CONTAINER_DEV_DIR/build/sstate-cache
 
 echo "Create the TRS shared repo directory on the host if doesn't already exist"
 mkdir -p $HOST_TRS_REPO
